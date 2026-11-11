@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "startedAt": "2026-11-11T21:28:24.929Z",
+  "specification": {
+    "path": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\candidate.json",
+    "sha256": "7792431d2a1d4f26f00b4123546ee1581d77b50ff20607663c831744ee3bb2ed",
+    "bytes": 8257
+  },
+  "artifact": {
+    "path": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.html"
+  },
+  "stages": {
+    "validate": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": null,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "architecture",
+        "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\candidate.json",
+        "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "deliver",
+        "receiptId": "a0c59d37-f44a-4c37-8fc9-a0746cf1b713",
+        "stage": "render",
+        "type": "architecture",
+        "input": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\candidate.json",
+        "output": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.html",
+        "error": "/meta/repository/url must be a credential-free HTTP(S) or Git SSH repository address without query, fragment, or dot segments.",
+        "diagnostics": [
+          {
+            "code": "repository-evidence/url-invalid",
+            "severity": "error",
+            "message": "/meta/repository/url must be a credential-free HTTP(S) or Git SSH repository address without query, fragment, or dot segments.",
+            "subject": {
+              "surface": "repository-evidence",
+              "path": "/meta/repository/url"
+            },
+            "evidence": {},
+            "supportedFixes": [
+              "run `git remote get-url origin` inside --repo-root and declare that credential-free address",
+              "use link_mode: local-only for internal repositories"
+            ]
+          }
+        ],
+        "provenance": "absent",
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      },
+      "execution": "embedded-in-deliver"
+    },
+    "deliver": {
+      "status": "not-run",
+      "execution": "blocked-by-validate"
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "diagnostics": [
+    {
+      "code": "repository-evidence/url-invalid",
+      "severity": "error",
+      "message": "/meta/repository/url must be a credential-free HTTP(S) or Git SSH repository address without query, fragment, or dot segments.",
+      "subject": {
+        "surface": "repository-evidence",
+        "path": "/meta/repository/url"
+      },
+      "evidence": {},
+      "supportedFixes": [
+        "run `git remote get-url origin` inside --repo-root and declare that credential-free address",
+        "use link_mode: local-only for internal repositories"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.finalize.json",
+    "summaryReceipt": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.finalize-summary.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "validate",
+  "finishedAt": "2026-11-11T21:28:25.849Z",
+  "durationMs": 920,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-11T21:08:32.812Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

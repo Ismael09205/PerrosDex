@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Poliperrodex: arquitectura en tiempo de ejecución",
+    "locale": "es",
+    "subtitle": "Vista de la copia local del árbol de trabajo; incluye cambios todavía no confirmados.",
+    "output": ".archify/architecture-runtime-poliperrodex-20261111-160000/poliperrodex-runtime-architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "file:///C:/Users/APP%20MOVILES/Talleres/Poliperrodex",
+      "link_mode": "local-only",
+      "revision": "4f1702c3e2c7b9a983fc26fbdc0cc4cb73f1767a"
+    }
+  },
+  "components": [
+    {
+      "id": "person",
+      "type": "external",
+      "label": "Entrenador",
+      "sublabel": "Usuario móvil",
+      "pos": [30, 390],
+      "size": [130, 68]
+    },
+    {
+      "id": "app-shell",
+      "type": "frontend",
+      "label": "Expo Router",
+      "sublabel": "Stack raíz + pestañas",
+      "tag": "React Native",
+      "pos": [230, 380],
+      "size": [175, 82],
+      "sources": [
+        { "path": "package.json", "line": 3, "label": "entrada" },
+        { "path": "src/app/_layout.tsx", "line": 9, "end_line": 29, "label": "stack raíz" },
+        { "path": "src/app/(tabs)/_layout.tsx", "line": 17, "end_line": 49, "label": "tabs" }
+      ]
+    },
+    {
+      "id": "nickname-state",
+      "type": "frontend",
+      "label": "Estado del entrenador",
+      "sublabel": "Contexto compartido",
+      "pos": [470, 145],
+      "size": [190, 78],
+      "sources": [
+        { "path": "src/ui/core/apodo-view-model.tsx", "line": 19, "end_line": 45, "label": "contexto y carga" }
+      ]
+    },
+    {
+      "id": "pokedex-profile",
+      "type": "frontend",
+      "label": "Pokédex y ficha",
+      "sublabel": "Explorar perros y avistamientos",
+      "pos": [470, 340],
+      "size": [205, 82],
+      "sources": [
+        { "path": "src/ui/pokedex/pokedex-screen.tsx", "line": 15, "end_line": 61, "label": "Pokédex" },
+        { "path": "src/ui/pokedex/use-pokedex-view-model.ts", "line": 10, "end_line": 48, "label": "carga en foco" },
+        { "path": "src/ui/perfil-perro/use-perfil-perro-view-model.ts", "line": 8, "end_line": 65, "label": "datos de ficha" }
+      ]
+    },
+    {
+      "id": "capture",
+      "type": "frontend",
+      "label": "Capturar avistamiento",
+      "sublabel": "Foto → ubicación → guardado",
+      "pos": [470, 520],
+      "size": [205, 82],
+      "sources": [
+        { "path": "src/ui/captura/captura-screen.tsx", "line": 35, "end_line": 72, "label": "cámara y navegación" },
+        { "path": "src/ui/captura/use-captura-view-model.ts", "line": 17, "end_line": 81, "label": "flujo de captura" }
+      ]
+    },
+    {
+      "id": "map-view",
+      "type": "frontend",
+      "label": "Mapa público",
+      "sublabel": "WebView + vista de puntos",
+      "pos": [470, 700],
+      "size": [205, 82],
+      "sources": [
+        { "path": "src/ui/mapa/mapa-screen.tsx", "line": 13, "end_line": 30, "label": "WebView" },
+        { "path": "src/ui/mapa/use-mapa-view-model.ts", "line": 17, "end_line": 47, "label": "consulta y adaptación" },
+        { "path": "src/ui/mapa/plantilla-leaflet.ts", "line": 11, "end_line": 43, "label": "HTML del mapa" }
+      ]
+    },
+    {
+      "id": "trainer-repository",
+      "type": "backend",
+      "label": "Repositorio de entrenador",
+      "sublabel": "Lee / guarda / olvida apodo",
+      "pos": [720, 145],
+      "size": [195, 78],
+      "sources": [
+        { "path": "src/data/repositories/entrenador-repository.ts", "line": 5, "end_line": 20, "label": "archivo local" }
+      ]
+    },
+    {
+      "id": "nickname-file",
+      "type": "database",
+      "label": "Documento local",
+      "sublabel": "apodo.txt",
+      "pos": [970, 145],
+      "size": [160, 70],
+      "sources": [
+        { "path": "src/data/repositories/entrenador-repository.ts", "line": 5, "end_line": 20, "label": "Expo FileSystem" }
+      ]
+    },
+    {
+      "id": "repositories",
+      "type": "backend",
+      "label": "Repositorios de datos",
+      "sublabel": "Perros y avistamientos",
+      "pos": [750, 430],
+      "size": [205, 86],
+      "sources": [
+        { "path": "src/data/repositories/perros-repository.ts", "line": 29, "end_line": 44, "label": "tabla perros" },
+        { "path": "src/data/repositories/avistamientos-repository.ts", "line": 48, "end_line": 96, "label": "lectura y captura" }
+      ]
+    },
+    {
+      "id": "supabase-client",
+      "type": "backend",
+      "label": "Cliente Supabase",
+      "sublabel": "Configuración por EXPO_PUBLIC_*",
+      "pos": [1030, 430],
+      "size": [195, 82],
+      "sources": [
+        { "path": "src/data/services/supabase-service.ts", "line": 7, "end_line": 19, "label": "cliente y Storage" },
+        { "path": "src/data/services/env.ts", "line": 5, "end_line": 20, "label": "URL y bucket" }
+      ]
+    },
+    {
+      "id": "supabase-project",
+      "type": "external",
+      "label": "Proyecto Supabase",
+      "sublabel": "perros · avistamientos · Storage",
+      "pos": [1300, 430],
+      "size": [200, 86],
+      "sources": [
+        { "path": "src/data/repositories/perros-repository.ts", "line": 29, "end_line": 44, "label": "consultas de perros" },
+        { "path": "src/data/repositories/avistamientos-repository.ts", "line": 48, "end_line": 96, "label": "tabla y fotos" }
+      ]
+    },
+    {
+      "id": "device-apis",
+      "type": "external",
+      "label": "Capacidades del móvil",
+      "sublabel": "Cámara · GPS · acelerómetro",
+      "pos": [750, 650],
+      "size": [205, 82],
+      "sources": [
+        { "path": "src/ui/captura/captura-screen.tsx", "line": 35, "end_line": 72, "label": "Expo Camera" },
+        { "path": "src/data/services/ubicacion-service.ts", "line": 4, "end_line": 11, "label": "Expo Location" },
+        { "path": "src/data/services/acelerometro-service.ts", "line": 11, "end_line": 20, "label": "Expo Sensors" }
+      ]
+    },
+    {
+      "id": "map-providers",
+      "type": "external",
+      "label": "Leaflet + OpenStreetMap",
+      "sublabel": "Recursos web y mosaicos",
+      "pos": [750, 830],
+      "size": [205, 82],
+      "sources": [
+        { "path": "src/ui/mapa/plantilla-leaflet.ts", "line": 23, "end_line": 43, "label": "CDN y tiles" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Aplicación móvil Expo",
+      "wraps": [
+        "app-shell",
+        "nickname-state",
+        "pokedex-profile",
+        "capture",
+        "map-view",
+        "trainer-repository",
+        "nickname-file",
+        "repositories",
+        "supabase-client"
+      ]
+    }
+  ],
+  "connections": [
+    { "from": "person", "to": "app-shell", "label": "abre y navega", "variant": "emphasis" },
+    { "from": "app-shell", "to": "nickname-state", "label": "monta provider" },
+    { "from": "app-shell", "to": "pokedex-profile", "label": "Pokédex / ficha" },
+    { "from": "app-shell", "to": "capture", "label": "pestaña Capturar" },
+    { "from": "app-shell", "to": "map-view", "label": "pestaña Mapa" },
+    { "from": "nickname-state", "to": "trainer-repository", "label": "hidrata y actualiza apodo" },
+    { "from": "trainer-repository", "to": "nickname-file", "label": "lee / escribe / elimina" },
+    { "from": "nickname-state", "to": "pokedex-profile", "label": "apodo actual" },
+    { "from": "nickname-state", "to": "capture", "label": "apodo requerido" },
+    { "from": "pokedex-profile", "to": "repositories", "label": "perros + capturas" },
+    { "from": "capture", "to": "repositories", "label": "lista + registrar" },
+    { "from": "map-view", "to": "repositories", "label": "avistamientos públicos" },
+    { "from": "capture", "to": "device-apis", "label": "foto, ubicación, caída" },
+    { "from": "map-view", "to": "map-providers", "label": "WebView solicita recursos" },
+    { "from": "repositories", "to": "supabase-client", "label": "consultas y escrituras" },
+    { "from": "supabase-client", "to": "supabase-project", "label": "API configurada", "variant": "emphasis" }
+  ]
+}
