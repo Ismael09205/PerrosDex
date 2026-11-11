@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\candidate.json",
+    "sha256": "74b16f658898c8b550fe8608430043ac5728e1d2c39d58497492bddf5a5f2c09",
+    "bytes": 7787
+  },
+  "artifact": {
+    "path": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.html",
+    "sha256": "8d16b13703b6ca0c39fbddca8f0f7b53313ebceae4cd6d20f79c4e0ec5b31a53",
+    "bytes": 862635
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\review-2\\poliperrodex-runtime-architecture.finalize.json",
+    "summaryReceipt": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\review-2\\poliperrodex-runtime-architecture.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\review-2\\poliperrodex-runtime-architecture.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-11T21:08:32.812Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 6793,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 3
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "from": "identity",
+            "to": "trainer-repository",
+            "label": "restaura / escucha / auth",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "bends": 3,
+          "stretch": 1.264
+        },
+        {
+          "relationship": {
+            "from": "data-access",
+            "to": "supabase-project",
+            "label": "Auth, consultas y Storage",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "bends": 3,
+          "stretch": 1.24
+        },
+        {
+          "relationship": {
+            "from": "member-screens",
+            "to": "data-access",
+            "label": "perros + avistamientos",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "bends": 3,
+          "stretch": 1.242
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "identity → trainer-repository needs 3 bends: move node identity or trainer-repository so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "data-access → supabase-project needs 3 bends: move node data-access or supabase-project so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "member-screens → data-access needs 3 bends: move node member-screens or data-access so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

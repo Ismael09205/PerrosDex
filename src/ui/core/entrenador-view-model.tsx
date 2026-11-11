@@ -15,6 +15,7 @@ type EstadoEntrenador = {
   entrando: boolean;
   error: string | null;
   iniciarSesion: () => void;
+  entrarConApodo: (apodo: string) => void;
   cerrarSesion: () => void;
 };
 
@@ -49,6 +50,18 @@ export function EntrenadorProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function entrarConApodo(apodo: string) {
+    setEntrando(true);
+    setError(null);
+    try {
+      setEntrenador(await entrenadorRepository.entrarConApodo(apodo));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'No se pudo entrar con el apodo');
+    } finally {
+      setEntrando(false);
+    }
+  }
+
   async function cerrarSesion() {
     try {
       await entrenadorRepository.cerrarSesion();
@@ -60,7 +73,15 @@ export function EntrenadorProvider({ children }: { children: ReactNode }) {
 
   return (
     <EntrenadorContext.Provider
-      value={{ entrenador, listo, entrando, error, iniciarSesion, cerrarSesion }}>
+      value={{
+        entrenador,
+        listo,
+        entrando,
+        error,
+        iniciarSesion,
+        entrarConApodo,
+        cerrarSesion,
+      }}>
       {children}
     </EntrenadorContext.Provider>
   );

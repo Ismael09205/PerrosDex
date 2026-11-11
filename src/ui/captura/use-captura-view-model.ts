@@ -3,11 +3,17 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { avistamientosRepository } from '@/data/repositories/avistamientos-repository';
 import { perrosRepository } from '@/data/repositories/perros-repository';
 import { escucharCaidas } from '@/data/services/acelerometro-service';
+import { medirNitidez } from '@/data/services/nitidez-service';
 import { obtenerUbicacionActual } from '@/data/services/ubicacion-service';
 import type { Entrenador } from '@/domain/models/entrenador';
 import type { Perro } from '@/domain/models/perro';
  
-export type PasoCaptura = 'listo' | 'fotografiando' | 'ubicando' | 'guardando';
+export type PasoCaptura = 'listo' | 'fotografiando' | 'revisando' | 'ubicando' | 'guardando';
+
+// Regla del juego: una foto movida no cuenta como captura. Por debajo de
+// este puntaje de nitidez se pide repetirla. Es un valor inicial: hay que
+// calibrarlo con fotos reales (ver el log "nitidez" al capturar).
+const NITIDEZ_MINIMA = 60;
  
 type Parametros = {
   entrenador: Entrenador;
@@ -69,6 +75,18 @@ export function useCapturaViewModel({ entrenador, activo }: Parametros) {
         const fotoUri = await tomarFoto();
         console.log(`captura: foto ${fotoUri}`); // TEMPORAL
         if (!fotoUri) throw new Error('La cámara no devolvió ninguna foto');
+        if (controlador.signal.aborted) {
+          console.log('captura: cancelada por caída'); // TEMPORAL
+          return false;
+        }
+
+        // Antes de gastar GPS y datos subiendo, se revisa que la foto sirva.
+        setPaso('revisando');
+        const nitidez = await medirNitidez(fotoUri);
+        console.log(`captura: nitidez ${nitidez.toFixed(1)} (mínimo ${NITIDEZ_MINIMA})`); // TEMPORAL
+        if (nitidez < NITIDEZ_MINIMA) {
+          throw new Error('La foto salió borrosa. Sostén el teléfono firme y vuelve a intentarlo.');
+        }
         if (controlador.signal.aborted) {
           console.log('captura: cancelada por caída'); // TEMPORAL
           return false;

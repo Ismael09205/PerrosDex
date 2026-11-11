@@ -6,6 +6,10 @@ import type { Entrenador } from '@/domain/models/entrenador';
 
 import { supabase } from '../services/supabase-service';
 
+// Solo hace algo en la web: cierra la ventana emergente del login cuando
+// Google vuelve a la app. En Android e iOS no hace nada.
+WebBrowser.maybeCompleteAuthSession();
+
 // El "entrenador" ahora es una cuenta de Google verificada por Supabase Auth.
 // Hacia arriba se sigue entregando un modelo de dominio: ninguna pantalla
 // sabe que existen Google, tokens ni sesiones.
@@ -15,6 +19,8 @@ import { supabase } from '../services/supabase-service';
 function apodoDesde(usuario: User): string {
   const datos = usuario.user_metadata ?? {};
   const candidatos = [
+    // Si entró con apodo (cuenta anónima), ese manda.
+    datos.apodo,
     datos.full_name,
     datos.name,
     usuario.email?.split('@')[0],
@@ -56,6 +62,7 @@ export const entrenadorRepository = {
     // En un development build esto es poliperrodex://; en Expo Go, exp://…
     // Esa URL debe estar en Supabase > Authentication > URL Configuration.
     const redirectTo = Linking.createURL('/');
+    console.log(`login: redirectTo=${redirectTo}`); // TEMPORAL
 
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -65,6 +72,7 @@ export const entrenadorRepository = {
     if (error) throw new Error(`No se pudo iniciar el login: ${error.message}`);
 
     const resultado = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+    console.log(`login: navegador=${resultado.type}`); // TEMPORAL
     if (resultado.type !== 'success') return null;
 
     const { queryParams } = Linking.parse(resultado.url);
@@ -77,6 +85,18 @@ export const entrenadorRepository = {
     const sesion = await supabase.auth.exchangeCodeForSession(codigo);
     if (sesion.error) throw new Error(`No se pudo crear la sesión: ${sesion.error.message}`);
     return aDominio(sesion.data.user);
+  },
+
+  // Plan B sin Google: una cuenta anónima de Supabase Auth con un apodo.
+  // Tiene un id real y una sesión, así que las mismas políticas de RLS la
+  // protegen. Requiere activar "Allow anonymous sign-ins" en Supabase.
+  async entrarConApodo(apodo: string): Promise<Entrenador> {
+    const { data, error } = await supabase.auth.signInAnonymously({
+      options: { data: { apodo: apodo.trim() } },
+    });
+    if (error) throw new Error(`No se pudo entrar con el apodo: ${error.message}`);
+    if (!data.user) throw new Error('Supabase no devolvió el usuario');
+    return aDominio(data.user);
   },
 
   async cerrarSesion(): Promise<void> {

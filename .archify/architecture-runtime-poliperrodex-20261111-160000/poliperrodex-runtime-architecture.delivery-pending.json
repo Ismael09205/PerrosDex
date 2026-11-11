@@ -1,8 +1,0 @@
-{
-  "schemaVersion": 1,
-  "command": "deliver",
-  "status": "pending",
-  "receiptId": "a0c59d37-f44a-4c37-8fc9-a0746cf1b713",
-  "input": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\candidate.json",
-  "output": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.html"
-}

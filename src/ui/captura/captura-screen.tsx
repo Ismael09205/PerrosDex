@@ -16,6 +16,7 @@ import { useCapturaViewModel, type PasoCaptura } from './use-captura-view-model'
 const TEXTO_PASO: Record<PasoCaptura, string> = {
   listo: 'Capturar',
   fotografiando: 'Fotografiando…',
+  revisando: 'Revisando la foto…',
   ubicando: 'Buscando tu ubicación…',
   guardando: 'Guardando…',
 };

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "5a732096-f6bb-432b-b7e0-9e7b239e3782",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\candidate.json",
+  "output": "C:\\Users\\APP MOVILES\\Talleres\\Poliperrodex\\.archify\\architecture-runtime-poliperrodex-20261111-160000\\poliperrodex-runtime-architecture.html",
+  "specification": {
+    "sha256": "74b16f658898c8b550fe8608430043ac5728e1d2c39d58497492bddf5a5f2c09",
+    "bytes": 7787
+  },
+  "artifact": {
+    "sha256": "8d16b13703b6ca0c39fbddca8f0f7b53313ebceae4cd6d20f79c4e0ec5b31a53",
+    "bytes": 862635
+  }
+}
